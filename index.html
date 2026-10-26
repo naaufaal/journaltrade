@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jurnal Analisis Trading</title>
+<style>
+:root{color-scheme:dark;--bg:#0e1116;--p:#151a22;--p2:#1b212b;--ln:#262d39;--tx:#e6e9ef;--mu:#8b93a1;--ac:#8ea2ff;--win:#3fb97f;--loss:#e5534b;--be:#8b93a1;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.w{max-width:1000px;margin:0 auto;padding:20px 16px 60px}
+h1{font-size:20px;margin:0;font-weight:650;letter-spacing:.2px}h2{font-size:13px;text-transform:uppercase;letter-spacing:.8px;color:var(--mu);font-weight:600;margin:28px 0 10px}
+.sub{color:var(--mu);font-size:13px;margin-top:2px}
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+button,input,select,textarea{font:inherit;color:inherit}
+button{background:var(--p2);border:1px solid var(--ln);border-radius:8px;padding:7px 12px;cursor:pointer}
+button:hover{border-color:var(--mu)}button.pri{background:var(--ac);color:#0e1116;border-color:var(--ac);font-weight:600}
+button.sm{padding:3px 9px;font-size:13px;color:var(--mu)}button.sm:hover{color:var(--tx)}
+:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+.st{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:18px}
+.c{background:var(--p);border:1px solid var(--ln);border-radius:10px;padding:12px 14px}
+.c b{display:block;font-size:24px;font-weight:650;font-variant-numeric:tabular-nums}.c span{font-size:12px;color:var(--mu)}
+.tb{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 1fr 1fr;gap:8px;margin:12px 0}
+.tb input,.tb select,.f input,.f select,.f textarea{width:100%;background:var(--p);border:1px solid var(--ln);border-radius:8px;padding:7px 10px}
+.hd,.row{display:grid;grid-template-columns:100px 120px 64px 1fr auto;gap:12px;align-items:center;padding:9px 14px}
+.hd{font-size:12px;color:var(--mu);text-transform:uppercase;letter-spacing:.6px}
+.list{background:var(--p);border:1px solid var(--ln);border-radius:10px;overflow:hidden}
+.row{border-top:1px solid var(--ln);cursor:pointer}.row:hover{background:var(--p2)}
+.rs{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#c3c8d2}.d{color:var(--mu);font-size:13px}
+.cv{font-variant-numeric:tabular-nums}.cv small{color:var(--mu)}
+.tk{display:inline-block;padding:2px 10px;border-radius:6px;font-weight:650;font-size:13px;border:1px solid;letter-spacing:.3px}
+.tk.win{color:var(--win);background:#3fb97f1a;border-color:#3fb97f55}.tk.loss{color:var(--loss);background:#e5534b1a;border-color:#e5534b55}.tk.be{color:var(--be);background:#8b93a11a;border-color:#8b93a155}
+.ac{display:flex;gap:4px}.em{padding:34px 16px;text-align:center;color:var(--mu)}
+dialog{overflow-x:hidden;background:var(--p);color:var(--tx);border:1px solid var(--ln);border-radius:12px;padding:0;width:min(640px,calc(100% - 24px));max-height:92vh}
+dialog::backdrop{background:#000a}.dh{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid var(--ln);position:sticky;top:0;background:var(--p);z-index:1}
+.db{padding:14px 18px 18px}.f label.l{display:block;font-size:13px;color:var(--mu);margin:12px 0 4px}.f textarea{resize:vertical;min-height:58px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.seg{display:flex;gap:8px;flex-wrap:wrap}.seg label,.tg label{cursor:pointer}.seg input,.tg input{position:absolute;opacity:0;pointer-events:none}
+.seg span,.tg span{display:inline-block;padding:6px 12px;border:1px solid var(--ln);border-radius:8px;background:var(--p2);font-size:14px}
+.seg input:checked+span{border-color:var(--tx);box-shadow:inset 0 0 0 1px var(--tx);font-weight:650}.seg input:checked+span::after{content:" ✓"}
+.seg .w1 b{color:var(--win)}.seg .l1 b{color:var(--loss)}.seg .b1 b{color:var(--be)}
+.tg{display:flex;gap:6px;flex-wrap:wrap}.tg input:checked+span{border-color:var(--ac);color:var(--ac);background:#8ea2ff18}
+input:focus-visible+span{outline:2px solid var(--ac);outline-offset:2px}
+.rg{display:flex;align-items:center;gap:12px}.rg input{accent-color:var(--ac);padding:0}.rg output{min-width:34px;font-size:20px;font-weight:650;text-align:right}
+.er{color:#f0a0a0;font-size:12px;min-height:16px}.da{display:flex;justify-content:flex-end;gap:8px;margin-top:16px}
+.dv h4{margin:14px 0 2px;font-size:12px;color:var(--mu);font-weight:600;text-transform:uppercase;letter-spacing:.6px}.dv p{margin:0;white-space:pre-wrap}
+.ib{display:grid;grid-template-columns:1fr 1fr;gap:10px}.ib .c{font-size:14px}.ib .c h3{margin:0 0 8px;font-size:14px}
+.ch{display:inline-block;background:var(--p2);border:1px solid var(--ln);border-radius:6px;padding:1px 8px;margin:2px 4px 2px 0;font-size:13px}.ch i{color:var(--mu);font-style:normal}
+.mu{color:var(--mu)}.ob,.hy{font-size:13px;margin:6px 0 0}.ob::before{content:"Observasi · ";color:var(--ac)}.hy::before{content:"Hipotesis · ";color:#d6b25e}
+table{width:100%;border-collapse:collapse;font-size:13px}td,th{text-align:left;padding:3px 6px 3px 0;font-weight:400}th{color:var(--mu)}
+.th{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0}.tn{position:relative}.tn img{width:96px;height:72px;object-fit:cover;border:1px solid var(--ln);border-radius:8px;display:block;cursor:zoom-in;background:var(--p2)}.tn .x{position:absolute;top:-7px;right:-7px;width:22px;height:22px;padding:0;border-radius:50%;line-height:1}
+.dv .tn img{width:150px;height:110px}.ev .hint{font-size:12px;margin-left:6px}.noas .ev button.sm,.noas .ev .hint{display:none}.ev .na{display:none;color:var(--mu);font-size:12px;margin:2px 0 6px}.noas .ev .na{display:block}
+#ts{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));background:var(--p2);border:1px solid var(--ln);padding:8px 14px;border-radius:8px;display:none;z-index:9}
+@media(max-width:700px){.st{grid-template-columns:repeat(2,1fr)}.st .c:first-child{grid-column:span 2}.tb{grid-template-columns:1fr 1fr}.ib{grid-template-columns:1fr}
+.hd{display:none}.row{grid-template-columns:auto 1fr auto;grid-template-areas:"d tk cv" "rs rs rs" "ac ac ac"}.row .d{grid-area:d}.row .tkw{grid-area:tk}.row .cv{grid-area:cv}.row .rs{grid-area:rs}.row .ac{grid-area:ac}}
+</style></head><body><div class="w">
+<div class="top"><div><h1>Jurnal Analisis Trading</h1><div class="sub">Evaluasi kualitas keputusan, bukan sekadar hasil.</div></div>
+<div class="ac"><button id="bx">Ekspor JSON</button><button id="bc">Ekspor CSV</button><button id="bi">Impor</button><button class="pri" id="ba">+ Trade baru</button></div></div>
+<input type="file" id="fi" accept=".json,application/json" hidden>
+<div class="st" id="st"></div>
+<h2>Jurnal</h2>
+<div class="tb">
+<input id="fq" placeholder="Cari ticker…" aria-label="Cari ticker">
+<select id="fo" aria-label="Filter hasil"><option value="">Semua hasil</option><option value="win">Menang</option><option value="loss">Kalah</option><option value="be">Seimbang</option></select>
+<select id="fc" aria-label="Filter keyakinan"><option value="">Semua keyakinan</option><option value="l">Rendah (1–4)</option><option value="m">Sedang (5–7)</option><option value="h">Tinggi (8–10)</option></select>
+<input type="date" id="ff" aria-label="Dari tanggal"><input type="date" id="ft" aria-label="Sampai tanggal">
+<select id="fs" aria-label="Urutkan"><option value="dd">Tanggal ↓</option><option value="da">Tanggal ↑</option><option value="cd">Keyakinan ↓</option><option value="ca">Keyakinan ↑</option><option value="ta">Ticker A–Z</option></select></div>
+<div class="list"><div class="hd"><div>Tanggal</div><div>Ticker</div><div>Yakin</div><div>Alasan</div><div style="width:150px"></div></div><div id="ls"></div></div>
+<h2>Wawasan analitis</h2><div id="in"></div>
+</div>
+<div id="ts" role="status"></div>
+
+<dialog id="fd"><form class="f" id="fm" novalidate>
+<div class="dh"><b id="ft2">Trade baru</b><button type="button" class="sm" data-close>Tutup</button></div><div class="db">
+<div class="g2"><div><label class="l" for="a1">Tanggal *</label><input type="date" id="a1" required></div><div><label class="l" for="a2">Ticker *</label><input id="a2" placeholder="BTCUSDT" autocapitalize="characters" required></div></div>
+<label class="l">Hasil (disimpan internal) *</label>
+<div class="seg" role="radiogroup" aria-label="Hasil"><label class="w1"><input type="radio" name="o" value="win"><span><b>▲</b> Menang</span></label><label class="l1"><input type="radio" name="o" value="loss"><span><b>▼</b> Kalah</span></label><label class="b1"><input type="radio" name="o" value="be"><span><b>●</b> Seimbang</span></label></div>
+<label class="l" for="a3">Alasan trade *</label><textarea id="a3" placeholder="Konteks pasar, orderflow, likuiditas, observasi pendukung"></textarea>
+<div class="ev" data-z="entry"><label class="l">Bukti entry (screenshot data yang mendasari alasan)</label><div class="th" id="th-entry"></div><button type="button" class="sm" data-add="entry">+ Tambah gambar</button><span class="mu hint">atau tempel dengan Ctrl+V</span><div class="na">Unggah gambar tidak tersedia di tampilan ini. Buka halaman ini langsung dari tab Artifact di claude.ai.</div></div>
+<label class="l" for="a4">Skor keyakinan</label><div class="rg"><input type="range" id="a4" min="1" max="10" value="5"><output id="a4o" for="a4">5</output></div>
+<label class="l">Kondisi sebelum trade</label><div class="tg" id="tg"></div><textarea id="a5" placeholder="Catatan singkat (opsional)" style="margin-top:8px"></textarea>
+<label class="l" for="a6">Keraguan / ketidakpastian</label><textarea id="a6" placeholder="Bukti yang kurang, sinyal yang bertentangan, perilaku pasar yang belum dipahami"></textarea>
+<label class="l" for="a7">Kondisi setelah trade</label><textarea id="a7" placeholder="Emosi dan apakah emosi memengaruhi keputusan"></textarea>
+<div class="ev" data-z="exit"><label class="l">Bukti exit / perubahan kondisi market (opsional)</label><div class="th" id="th-exit"></div><button type="button" class="sm" data-add="exit">+ Tambah gambar</button><span class="mu hint">atau tempel dengan Ctrl+V</span><div class="na">Unggah gambar tidak tersedia di tampilan ini. Buka halaman ini langsung dari tab Artifact di claude.ai.</div></div>
+<label class="l" for="a8">Pelajaran &amp; kesimpulan</label><textarea id="a8" placeholder="Yang benar, yang keliru, yang tak terduga, yang perlu dipahami lebih baik"></textarea>
+<label class="l" for="a9">Catatan</label><textarea id="a9" style="min-height:44px"></textarea>
+<div class="er" id="er" role="alert"></div>
+<div class="da"><button type="button" data-close>Batal</button><button class="pri" type="submit">Simpan</button></div></div></form></dialog>
+
+<dialog id="vd"><div class="dh"><b id="vt"></b><button class="sm" data-close>Tutup</button></div><div class="db dv" id="vb"></div></dialog>
+<input type="file" id="fx" accept="image/*" multiple hidden>
+<dialog id="ld"><div class="dh"><b>Bukti</b><button class="sm" data-close>Tutup</button></div><div class="db"><img id="lb" alt="Bukti" style="width:100%;height:auto;border-radius:8px"></div></dialog>
+<dialog id="dd"><div class="db"><p>Hapus trade <b id="dn"></b>? Tindakan ini tidak bisa dibatalkan.</p><div class="da"><button data-close>Batal</button><button class="pri" id="dy">Hapus</button></div></div></dialog>
+
+<script>
+const KEY='tj.v1',TAGS=['Tenang','Ragu-ragu','FOMO','Takut','Overconfident','Tidak sabar','Fokus'],OL={win:'Menang',loss:'Kalah',be:'Seimbang'};
+let T=[],col=null,dl=null,edit=null,delId=null;
+const $=id=>document.getElementById(id),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function toast(m){const t=$('ts');t.textContent=m;t.style.display='block';clearTimeout(toast.h);toast.h=setTimeout(()=>t.style.display='none',2600)}
+function lsGet(){try{return JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){return[]}}
+function lsSet(){try{localStorage.setItem(KEY,JSON.stringify(T))}catch(e){}}
+async function dbSet(t){try{if(col)await col.doc(t.id).set(t)}catch(e){}}
+async function dbDel(id){try{if(col)await col.doc(id).delete()}catch(e){}}
+const fmtD=s=>{const[y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d).toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric'})};
+const avg=a=>a.length?(a.reduce((x,t)=>x+t.conv,0)/a.length).toFixed(1):'—';
+
+function stats(){const W=T.filter(t=>t.outcome==='win'),L=T.filter(t=>t.outcome==='loss'),dn=W.length+L.length;
+ const s=[[T.length,'Total trade'],[dn?(W.length/dn*100).toFixed(1)+'%':'—','Win rate (tanpa seimbang)'],[avg(T),'Rata-rata keyakinan'],[avg(W),'Keyakinan trade menang'],[avg(L),'Keyakinan trade kalah']];
+ $('st').innerHTML=s.map(([v,l])=>`<div class="c"><b>${v}</b><span>${l}</span></div>`).join('')}
+
+function view(){let a=T.slice();const q=$('fq').value.trim().toUpperCase(),o=$('fo').value,c=$('fc').value,f=$('ff').value,t=$('ft').value,s=$('fs').value;
+ if(q)a=a.filter(x=>x.ticker.includes(q));if(o)a=a.filter(x=>x.outcome===o);
+ if(c)a=a.filter(x=>c==='l'?x.conv<=4:c==='m'?x.conv>=5&&x.conv<=7:x.conv>=8);
+ if(f)a=a.filter(x=>x.date>=f);if(t)a=a.filter(x=>x.date<=t);
+ const by={dd:(x,y)=>y.date.localeCompare(x.date)||y.ts-x.ts,da:(x,y)=>x.date.localeCompare(y.date)||x.ts-y.ts,cd:(x,y)=>y.conv-x.conv,ca:(x,y)=>x.conv-y.conv,ta:(x,y)=>x.ticker.localeCompare(y.ticker)};
+ return a.sort(by[s])}
+
+function list(){const a=view();$('ls').innerHTML=a.length?a.map(t=>`<div class="row" data-id="${t.id}"><div class="d">${fmtD(t.date)}</div><div class="tkw"><span class="tk ${t.outcome}" aria-label="Ticker ${esc(t.ticker)}, hasil ${OL[t.outcome]}">${esc(t.ticker)}</span></div><div class="cv">${t.conv}<small>/10</small></div><div class="rs">${esc(t.reason)}</div><div class="ac"><button class="sm" data-a="v">Lihat</button><button class="sm" data-a="e">Ubah</button><button class="sm" data-a="x">Hapus</button></div></div>`).join(''):`<div class="em">${T.length?'Tidak ada trade yang cocok dengan filter.':'Belum ada trade. Mulai dengan menekan “+ Trade baru”.'}</div>`}
+
+const SW=new Set('yang dan untuk dengan dari pada atau tidak ini itu ada akan sudah saya aku lebih karena juga masih saat sebelum setelah dalam bisa belum agar harus lagi hanya jadi oleh sama bahwa kita the and for with that this was not but are have from'.split(' '));
+function terms(x){const m=new Map();x.forEach(s=>new Set((s||'').toLowerCase().replace(/[^a-z0-9]+/g,' ').split(' ').filter(w=>w.length>=4&&!SW.has(w))).forEach(w=>m.set(w,(m.get(w)||0)+1)));return[...m].filter(([,n])=>n>=2).sort((a,b)=>b[1]-a[1]).slice(0,6)}
+const chips=r=>r.length?r.map(([w,n])=>`<span class="ch">${esc(w)} <i>×${n}</i></span>`).join(''):'<span class="mu">Belum ada pola berulang.</span>';
+
+function insights(){const n=T.length;if(n<5)return`<div class="c mu">Wawasan muncul setelah minimal 5 trade tercatat agar tidak menyimpulkan dari data yang terlalu sedikit. Saat ini: ${n}.</div>`;
+ const W=T.filter(t=>t.outcome==='win'),L=T.filter(t=>t.outcome==='loss');
+ const B=[['Rendah (1–4)',t=>t.conv<=4],['Sedang (5–7)',t=>t.conv>=5&&t.conv<=7],['Tinggi (8–10)',t=>t.conv>=8]];
+ let k=`<table><tr><th>Keyakinan</th><th>Trade</th><th>Menang</th><th>Kalah</th><th>Win rate</th></tr>`+B.map(([l,f])=>{const x=T.filter(f),w=x.filter(t=>t.outcome==='win').length,ls=x.filter(t=>t.outcome==='loss').length;return`<tr><td>${l}</td><td>${x.length}</td><td>${w}</td><td>${ls}</td><td>${w+ls?Math.round(w/(w+ls)*100)+'%':'—'}</td></tr>`}).join('')+`</table>`;
+ if(W.length&&L.length){const a=+avg(W),b=+avg(L);k+=`<p class="ob">Rata-rata keyakinan: ${a} pada trade menang dan ${b} pada trade kalah.</p>`;
+  if(W.length>=3&&L.length>=3)k+=`<p class="hy">${a-b>=1?'Keyakinan lebih tinggi tampak sejalan dengan hasil lebih baik, namun bisa kebetulan atau bias sampel.':b-a>=1?'Keyakinan tinggi belum tentu mencerminkan analisis yang lebih baik; periksa kemungkinan overconfidence.':'Keyakinan belum tampak membedakan hasil.'} Korelasi bukan sebab-akibat.</p>`}
+ else k+=`<p class="mu" style="font-size:13px">Perlu trade menang dan kalah untuk membandingkan.</p>`;
+ const em={};T.forEach(t=>(t.tags||[]).forEach(g=>{(em[g]=em[g]||{win:0,loss:0,be:0})[t.outcome]++}));
+ const er=Object.entries(em).filter(([,v])=>v.win+v.loss+v.be>=2).sort((a,b)=>(b[1].win+b[1].loss+b[1].be)-(a[1].win+a[1].loss+a[1].be));
+ let e=er.length?er.map(([g,v])=>`<div><span class="ch">${esc(g)}</span> <span class="mu">${v.win} menang · ${v.loss} kalah · ${v.be} seimbang</span></div>`).join(''):'<span class="mu">Belum ada kondisi yang muncul ≥2 kali.</span>';
+ const hy=er.find(([,v])=>v.loss>=3&&!v.win&&!v.be);if(hy)e+=`<p class="hy">Kondisi “${esc(hy[0])}” sebelum trade selalu berakhir kalah (${hy[1].loss}×). Perlu diuji pada data lebih banyak.</p>`;
+ e+=`<p class="mu" style="font-size:13px;margin:8px 0 2px">Setelah trade (kata berulang):</p>`+chips(terms(T.map(t=>t.post)));
+ const card=(h,b)=>`<div class="c"><h3>${h}</h3>${b}</div>`;
+ return`<p class="mu" style="font-size:13px;margin:0 0 10px">Observasi = hitungan dari data Anda. Hipotesis = dugaan yang perlu diuji. Kata kunci hanya frekuensi kata, bukan tafsir.</p><div class="ib">`+
+ card('Keyakinan &amp; hasil',k)+card('Kondisi emosi',e)+
+ card('Alasan pada trade menang',W.length>=2?chips(terms(W.map(t=>t.reason))):'<span class="mu">Perlu ≥2 trade menang.</span>')+
+ card('Alasan pada trade kalah',L.length>=2?chips(terms(L.map(t=>t.reason))):'<span class="mu">Perlu ≥2 trade kalah.</span>')+
+ card('Keraguan &amp; titik buta berulang',chips(terms(T.map(t=>t.doubt))))+card('Kesalahan &amp; pelajaran berulang',chips(terms(T.map(t=>t.lesson))))+`</div>`}
+
+function render(){stats();list();$('in').innerHTML=insights()}
+function persist(t){lsSet();dbSet(t);render()}
+
+// Form
+$('tg').innerHTML=TAGS.map(g=>`<label><input type="checkbox" value="${g}"><span>${g}</span></label>`).join('');
+$('a4').oninput=()=>$('a4o').textContent=$('a4').value;
+function openForm(t){edit=t||null;IM={entry:[...(t?.imgs?.entry||[])],exit:[...(t?.imgs?.exit||[])]};fresh=[];drawTh();$('ft2').textContent=t?'Ubah trade':'Trade baru';$('er').textContent='';
+ $('a1').value=t?.date||new Date().toISOString().slice(0,10);$('a2').value=t?.ticker||'';$('a3').value=t?.reason||'';$('a4').value=t?.conv||5;$('a4o').textContent=$('a4').value;
+ $('a5').value=t?.preNote||'';$('a6').value=t?.doubt||'';$('a7').value=t?.post||'';$('a8').value=t?.lesson||'';$('a9').value=t?.notes||'';
+ document.querySelectorAll('#fm input[name=o]').forEach(r=>r.checked=t?r.value===t.outcome:false);
+ document.querySelectorAll('#tg input').forEach(c=>c.checked=!!t&&(t.tags||[]).includes(c.value));$('fd').showModal()}
+$('fm').onsubmit=ev=>{ev.preventDefault();const tk=$('a2').value.trim().toUpperCase().replace(/\s+/g,''),o=document.querySelector('#fm input[name=o]:checked')?.value,er=[];
+ if(!$('a1').value)er.push('Tanggal wajib diisi.');if(!/^[A-Z0-9._\/-]{2,20}$/.test(tk))er.push('Ticker wajib diisi (mis. BTCUSDT).');
+ if(!o)er.push('Pilih hasil trade.');if(!$('a3').value.trim())er.push('Alasan trade wajib diisi.');
+ if(er.length){$('er').textContent=er.join(' ');return}
+ const t={id:edit?.id||'t'+Date.now().toString(36)+Math.random().toString(36).slice(2,6),ts:edit?.ts||Date.now(),date:$('a1').value,ticker:tk,outcome:o,reason:$('a3').value.trim(),conv:+$('a4').value,
+  tags:[...document.querySelectorAll('#tg input:checked')].map(c=>c.value),preNote:$('a5').value.trim(),doubt:$('a6').value.trim(),post:$('a7').value.trim(),lesson:$('a8').value.trim(),notes:$('a9').value.trim(),upd:Date.now(),imgs:{entry:IM.entry.slice(),exit:IM.exit.slice()}};
+ const i=T.findIndex(x=>x.id===t.id);i>=0?T[i]=t:T.push(t);fresh=[];if(edit){const keep=new Set([...t.imgs.entry,...t.imgs.exit]);[...(edit.imgs?.entry||[]),...(edit.imgs?.exit||[])].filter(x=>!keep.has(x)).forEach(delAsset)}$('fd').close();persist(t);toast('Tersimpan')};
+
+async function detail(t){await preload([...(t.imgs?.entry||[]),...(t.imgs?.exit||[])]);$('vt').innerHTML=`<span class="tk ${t.outcome}">${esc(t.ticker)}</span> <span class="mu" style="font-weight:400;font-size:13px">${fmtD(t.date)}</span>`;
+ const r=(h,v)=>v?`<h4>${h}</h4><p>${esc(v)}</p>`:'';
+ $('vb').innerHTML=r('Hasil',OL[t.outcome])+r('Skor keyakinan',t.conv+' / 10')+r('Alasan trade',t.reason)+imgs(t,'entry')+r('Kondisi sebelum trade',[(t.tags||[]).join(', '),t.preNote].filter(Boolean).join('\n'))+r('Keraguan / ketidakpastian',t.doubt)+r('Kondisi setelah trade',t.post)+imgs(t,'exit')+r('Pelajaran & kesimpulan',t.lesson)+r('Catatan',t.notes)+`<div class="da"><button id="ve">Ubah</button></div>`;
+ $('ve').onclick=()=>{$('vd').close();openForm(t)};$('vd').showModal()}
+
+$('ls').onclick=e=>{const row=e.target.closest('.row');if(!row)return;const t=T.find(x=>x.id===row.dataset.id),a=e.target.dataset.a;
+ if(a==='e')openForm(t);else if(a==='x'){delId=t.id;$('dn').textContent=t.ticker;$('dd').showModal()}else detail(t)};
+$('dy').onclick=()=>{const o=T.find(x=>x.id===delId);[...(o?.imgs?.entry||[]),...(o?.imgs?.exit||[])].forEach(delAsset);T=T.filter(x=>x.id!==delId);lsSet();dbDel(delId);$('dd').close();render();toast('Dihapus')};
+document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>b.closest('dialog').close());
+$('ba').onclick=()=>openForm();
+['fq','fo','fc','ff','ft','fs'].forEach(i=>$(i).oninput=list);
+
+// Bukti gambar
+let AS=null,IM={entry:[],exit:[]},fresh=[],zone='entry';
+const ZN={entry:'Bukti entry',exit:'Bukti exit'},src=id=>id[0]==='L'?(OU.get(id)||''):'/_blob/'+id;
+const OU=new Map();
+const idb=()=>new Promise((res,rej)=>{const r=indexedDB.open('tj-img',1);r.onupgradeneeded=()=>r.result.createObjectStore('i');r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)});
+async function idbPut(id,b){const d=await idb();return new Promise((res,rej)=>{const x=d.transaction('i','readwrite');x.objectStore('i').put(b,id);x.oncomplete=()=>res();x.onerror=()=>rej(x.error)})}
+async function idbGet(id){const d=await idb();return new Promise((res,rej)=>{const q=d.transaction('i').objectStore('i').get(id);q.onsuccess=()=>res(q.result);q.onerror=()=>rej(q.error)})}
+async function idbDel(id){try{const d=await idb();d.transaction('i','readwrite').objectStore('i').delete(id)}catch(e){}}
+async function preload(ids){for(const id of ids){if(id[0]==='L'&&!OU.has(id)){try{const b=await idbGet(id);if(b)OU.set(id,URL.createObjectURL(b))}catch(e){}}}}
+async function delAsset(id){try{if(id[0]==='L')await idbDel(id);else if(AS)await AS.delete(id)}catch(e){}}
+const imgs=(t,z)=>(t.imgs?.[z]||[]).length?`<h4>${ZN[z]}</h4><div class="th">${t.imgs[z].map(id=>`<span class="tn"><img src="${src(id)}" alt="${ZN[z]}" loading="lazy"></span>`).join('')}</div>`:'';
+async function drawTh(){await preload([...IM.entry,...IM.exit]);['entry','exit'].forEach(z=>$('th-'+z).innerHTML=IM[z].map(id=>`<span class="tn"><img src="${src(id)}" alt="${ZN[z]}"><button type="button" class="x" data-rm="${z}:${id}" aria-label="Hapus gambar">×</button></span>`).join(''))}
+function shrink(f){return new Promise((res,rej)=>{const u=URL.createObjectURL(f),im=new Image();im.onload=()=>{const k=Math.min(1,1600/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext('2d').drawImage(im,0,0,c.width,c.height);URL.revokeObjectURL(u);c.toBlob(b=>b?res(b):rej(),'image/jpeg',.85)};im.onerror=rej;im.src=u})}
+async function addImgs(files,z){
+ for(const f of files){if(!f.type.startsWith('image/'))continue;if(IM[z].length>=4){toast('Maksimal 4 gambar per bagian');break}
+  try{const b=await shrink(f);let id;if(AS)id=(await AS.upload(b)).id;else{id='L'+Date.now().toString(36)+Math.random().toString(36).slice(2,7);await idbPut(id,b)}IM[z].push(id);fresh.push(id);drawTh()}catch(e){toast('Gagal mengunggah gambar')}}}
+document.querySelectorAll('[data-add]').forEach(b=>b.onclick=()=>{zone=b.dataset.add;$('fx').click()});
+$('fx').onchange=()=>{addImgs([...$('fx').files],zone);$('fx').value=''};
+$('fd').addEventListener('paste',e=>{const cd=e.clipboardData,fs=[...(cd?.files||[]),...[...(cd?.items||[])].filter(i=>i.kind==='file').map(i=>i.getAsFile())].filter((f,i,a)=>f&&f.type.startsWith('image/')&&a.findIndex(g=>g&&g.size===f.size&&g.type===f.type)===i);if(!fs.length)return;e.preventDefault();const z=document.activeElement?.closest?.('.ev')?.dataset.z||zone;zone=z;addImgs(fs,z)});
+$('fd').addEventListener('click',e=>{const r=e.target.dataset.rm;if(r){const[z,id]=r.split(':');IM[z]=IM[z].filter(x=>x!==id);drawTh()}});
+$('fd').addEventListener('close',()=>{fresh.forEach(delAsset);fresh=[]});
+$('vb').addEventListener('click',e=>{if(e.target.tagName==='IMG'){$('lb').src=e.target.src;$('ld').showModal()}});
+
+// Ekspor / impor
+async function save(name,data){try{if(dl){await dl.save({filename:name,data});toast('File siap disimpan');return}}catch(e){if(e&&e.code==='declined')return}
+ try{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([data]));a.download=name;document.body.appendChild(a);a.click();a.remove();toast('File diunduh');return}catch(e){}
+ try{await navigator.clipboard.writeText(data);toast('Unduhan tidak tersedia; data disalin ke papan klip')}catch(e){toast('Ekspor tidak tersedia di tampilan ini')}}
+$('bx').onclick=()=>save('jurnal-trading.json',JSON.stringify(T,null,2));
+$('bc').onclick=()=>{const h=['date','ticker','outcome','conviction','reason','pre_state_tags','pre_state_note','doubt','post_state','lesson','notes'],q=v=>'"'+String(v??'').replace(/"/g,'""')+'"';
+ save('jurnal-trading.csv',[h.join(',')].concat(T.map(t=>[t.date,t.ticker,t.outcome,t.conv,t.reason,(t.tags||[]).join('; '),t.preNote,t.doubt,t.post,t.lesson,t.notes].map(q).join(','))).join('\n'))};
+$('bi').onclick=()=>$('fi').click();
+$('fi').onchange=async()=>{const f=$('fi').files[0];if(!f)return;try{const a=JSON.parse(await f.text());if(!Array.isArray(a))throw 0;let n=0;
+ a.forEach(x=>{if(x&&x.id&&x.date&&x.ticker&&['win','loss','be'].includes(x.outcome)&&x.conv>=1&&x.conv<=10){const i=T.findIndex(y=>y.id===x.id);i>=0?T[i]=x:T.push(x);dbSet(x);n++}});lsSet();render();toast(n+' trade diimpor')}catch(e){toast('Berkas tidak valid')}$('fi').value=''};
+
+// Muat data
+T=lsGet();render();
+(async()=>{try{if(!window.claude)return;const[u,db,d,as]=await Promise.all([claude.use('user'),claude.use('db'),claude.use('downloads'),claude.use('assets')]);dl=d;AS=as;if(!u||!db)return;
+ col=db.collection('data/users/'+await u.id());const snap=await col.get(),r=snap.docs.map(x=>x.data()).filter(x=>x&&x.id),ids=new Set(r.map(x=>x.id));
+ const m=new Map(T.map(x=>[x.id,x]));r.forEach(x=>{const y=m.get(x.id);if(!y||(x.upd||0)>=(y.upd||0))m.set(x.id,x)});
+ T=[...m.values()];T.filter(x=>!ids.has(x.id)).forEach(dbSet);lsSet();render()}catch(e){}})();
+</script></body></html>
